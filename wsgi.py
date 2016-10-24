@@ -1,3 +1,2 @@
 from app import app
-app.run(debug=True,
-			host=app.config.get("HOST", "localhost"))
+app.run(host=app.config.get("HOST", "localhost"))
