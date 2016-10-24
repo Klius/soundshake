@@ -1,4 +1,4 @@
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'password'
 HOST="0.0.0.0"
-PORT=80
+PORT=5000
