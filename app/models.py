@@ -1,8 +1,20 @@
 from app import db
 
+class TipoUsuario(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	nombre = db.Column(db.String(50))
+	descripcion = db.Column(db.String(400))
+	imagen = db.Column(db.String(400))
+	
+	def __repr__(self):
+		return '<Tipo Usuario %r>' % (self.nombre)
+
+
+
 class Usuario(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	mail = db.Column(db.String(140),index=True, unique=True)
+	genero = db.Column(db.String(10),index=True)
 	password = db.Column(db.String(60))
 	nombre = db.Column(db.String(60))
 	descripcion = db.Column(db.String(240))
@@ -10,20 +22,10 @@ class Usuario(db.Model):
 	imagen_banner = db.Column(db.String(400))
 	posts = db.relationship('Post', backref='author', lazy='dynamic')
 	comentarios = db.relationship('Comentario',backref='comment', lazy='dynamic')
-	id_tipo_usuario = db.Column(db.Integer,db.ForeignKey('TipoUsuario.id'))
+	id_tipo_usuario = db.Column(db.Integer,db.ForeignKey('tipo_usuario.id'))
 	
 	def __repr__(self):
 		return '<User %r>' % (self.nombre)
-
-
-class TipoUsuario(db.Model):
-	id = db.Column(db.Integer,primary_key=True)
-	nombre = db.Column(db.String(50))
-	descripcion = db.Column(db.String(400))
-	imagen = db.Column(db.String(400))
-	
-	def __repr__(self):
-		return '<Tipo Usuario %r>' % (self.nombre)
 
 
 class Post(db.Model):
