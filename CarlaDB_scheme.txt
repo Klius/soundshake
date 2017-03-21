@@ -1,0 +1,93 @@
+DB:
+
+user {
+	user_id: PRIMARY_KEY
+	name
+	password
+	image
+	date_account_creation
+}
+
+(afegir opcio links a diferents reds socials (preguntar quines vol a la Carla))
+
+person {
+	person_id: PRIMARY_KEY -> user_id(user)
+	musical_style
+	description
+	localization
+	birth_date
+	fix_phone_number
+	mobile_phone_number
+	mail
+	link1
+	link2
+}
+
+entity {
+	entity_id: PRIMARY_KEY
+	user_id 		-> user_id(user)
+	profession
+	other_profession (if profession == other)
+	description
+	experience_time
+	localization
+	phone_number1
+	phone_number2
+	mail
+	link1
+	link2
+}
+
+musical_band {
+	musical_band_id: PRIMARY_KEY
+	name
+	styles
+	description
+	localization
+	creation_date
+	mail
+	link1
+	link2
+}
+
+band_member {
+	person_id 		-> person_id(person)
+	musical_band_id -> musical_band_id(musical_band)
+	instrument_id	-> instrument_id(instrument)
+	FOREIGN KEY (person_id, instrument_id)<-references instrument
+	PRIMARY_KEY(person_id, musical_band_id, instrument_id)
+}
+
+instrument {
+	person_id 		-> person_id(person)
+	instrument_id	
+	name
+	experience_time
+	description
+	PRIMARY_KEY(person_id, instrument_id)
+}
+
+profession_entity {
+	profession_id
+	can_be_person (boolea)
+	name
+	description
+}
+
+activities {
+	//TODO
+}
+
+ad_table {
+	//TODO
+}
+
+______________________________
+
+Sign Up -> persona, entitat
+
+entitat -> feina (local, etc)
+
+persona -> music/entitat (treballador musical)
+
+
