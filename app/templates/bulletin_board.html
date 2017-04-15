@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1><center>Tablón</center></h1>
+{% for post in posts %}
+<div style="background: #dddddd; padding: 10px; margin: 5px; border: 5px;border-color: black">
+	<h3><a href="#">{{ post.body }}</a></h3>
+	<p style="text-align: right"><b>{{ post.author.nickname }}</b></p>
+</div>
+{% endfor %}
+{% endblock %}
