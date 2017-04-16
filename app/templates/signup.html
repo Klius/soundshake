@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="col-md-12">
+		<h1>Registro</h1>
+		<center>
+			<h3>Escoge tu perfil</h3>
+		</center>
+		{% if userTypes %}
+			<div class="row">
+				{% for type in userTypes %}
+					<div class="col-md-4">
+						<h5>{{ type.name }}</h5>
+						<p>{{ type.description }}</p>
+						<button onclick="showForm({{ type.id_tipo_usuario }})">Registrarme</button>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

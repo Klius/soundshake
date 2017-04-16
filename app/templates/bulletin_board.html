@@ -1,10 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<h1><center>Tablón</center></h1>
-{% for post in posts %}
-<div style="background: #dddddd; padding: 10px; margin: 5px; border: 5px;border-color: black">
-	<h3><a href="#">{{ post.body }}</a></h3>
-	<p style="text-align: right"><b>{{ post.author.nickname }}</b></p>
-</div>
-{% endfor %}
+	<h1><center>Tablón</center></h1>
+	<!--Aixo s'ha de canviar...tot-->
+	<div class="container">
+		{% for post in posts %}
+			<div class="row">
+				<div class="span12">
+					<div class="row">
+						<div class="span8">
+							<h4><strong><a href="#">{{ post.title }}</a></strong></h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span2">
+							<a href="#" class="thumbnail">
+								<img src="#" alt="" height="260" width="180">
+							</a>
+						</div>
+						<div class="span10">      
+							<p>{{ post.body }}</p>
+							<p><a class="btn" href="#">Read more</a></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="span8">
+							<p>
+								<i class="icon-user"></i> by 
+								<a href="#">{{ post.author.nickname }}</a> 
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	</div>
 {% endblock %}
