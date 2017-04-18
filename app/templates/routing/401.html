@@ -1,13 +1,16 @@
 {% extends "base.html" %}
+{% block title %}
+    <title>error - SoundShake</title>
+{% endblock %}
 {% block content %}
-	<div style="text-align: center;">
+	<div class="text-center">
 		<div class="alert alert-danger">
-			<h1>ERROR 401!</h1>
-			<p>No estas autorizado para entrar en la p&aacute;gina solicitada.</p>
+			<h1>ERROR 401</h1>
+            <p class="panel-body">No estas autorizado para entrar en la p&aacute;gina solicitada.</p>
             {% if error %}
-                <p> <em>{{ error }}</em> </p>
+                <p><em>{{ error }}</em></p>
             {% endif %}
 		</div>
-		<p><strong>You shall not pass!</strong></p>
+        <p><strong>You shall not pass!</strong></p>
 	</div>
 {% endblock %}

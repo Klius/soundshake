@@ -1,4 +1,17 @@
 {% extends "base.html" %}
+{% block title %}
+    <title>inicio sesion - SoundShake</title>
+{% endblock %}
 {% block content %}
-	<h1 style="text-align: center;">Login!</h1>
+	<h1 class="text-center">Inicio de sesi&oacute;n</h1>
+    <form action="" method="post" class="form" role="form" name="login">
+        {{ form.hidden_tag() }}
+        <div class="form-group  required">
+            {{ form.nickname.label(class='control-label') }}
+            {{ form.nickname(class='form-control') }}
+            {{ form.password.label(class='control-label') }}
+            {{ form.password(class='form-control') }}
+        </div>
+        {{ form.submit(class='btn btn-default') }}
+    </form>
 {% endblock %}

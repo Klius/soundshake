@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>error - SoundShake</title>
+{% endblock %}
+{% block content %}
+	<div class="text-center">
+		<div class="alert alert-danger">
+			<h1>ERROR 500</h1>
+            <p class="panel-body">Error interno del servidor.</p>
+            {% if error %}
+                <p><em>{{ error }}</em></p>
+            {% endif %}
+		</div>
+        <p>
+            <strong>
+                I've seen things you people wouldn't believe.<br/>
+                Attack ships on fire off the shoulder of Orion.<br/>
+                I watched C-beams glitter in the dark near the Tannhäuser Gate.<br/>
+                All those moments will be lost in time,<br/>
+                like tears in rain. Time to die.<br/>
+            </strong>
+            -<em>Roy Batty</em>-
+        </p>
+	</div>
+{% endblock %}

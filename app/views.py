@@ -1,5 +1,6 @@
-from flask import render_template, abort
+from flask import render_template
 from app import app
+from app.forms import LoginForm
 
 navbarItems = [
     {
@@ -29,10 +30,20 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    nick_name = None
+    password = None
+    form = LoginForm()
+    if form.validate_on_submit():
+        nick_name = form.nick_name.data
+        form.nick_name.data = ''
+        password = form.password.data
+        form.password = ''
     return render_template('login.html',
-                           title='inicio sesion',
                            current='login',
-                           navbarItems=navbarItems)
+                           navbarItems=navbarItems,
+                           form=form,
+                           nickName=nick_name,
+                           password=password)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -55,7 +66,6 @@ def signup():
         }
     ]
     return render_template('signup.html',
-                           title='registro',
                            current='signup',
                            navbarItems=navbarItems,
                            userTypes=user_types)
@@ -67,30 +77,63 @@ def bulletin_board():
         {
             'author': {'nickname': 'John'},
             'title': 'Busco guitarra',
-            'body': 'Busco guitarra en Escocia!'
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
         {
             'author': {'nickname': 'Susan'},
             'title': 'Lost bass',
-            'body': 'He perdido un contrabajo.'
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'title': 'Lost bass',
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'title': 'Lost bass',
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'title': 'Lost bass',
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'title': 'Lost bass',
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'title': 'Lost bass',
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'title': 'Lost bass',
+            'body': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         }
     ]
     return render_template('bulletin_board.html',
-                           title='tablon',
                            current='bulletin_board',
                            navbarItems=navbarItems,
                            posts=posts)
 
 
-@app.errorhandler(404)
-def not_found(error):
-    return render_template('routing/404.html',
-                           title='error',
-                           error=error), 404
-
-
 @app.errorhandler(401)
 def not_found(error):
     return render_template('routing/401.html',
-                           title='error',
                            error=error), 401
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('routing/404.html',
+                           error=error), 404
+
+
+@app.errorhandler(500)
+def not_found(error):
+    return render_template('routing/500.html',
+                           error=error), 500

@@ -1,8 +1,11 @@
 {% extends "base.html" %}
+{% block title %}
+    <title>registro - SoundShake</title>
+{% endblock %}
 {% block content %}
 	<div class="col-md-12">
 		<h1>Registro</h1>
-        <h3 style="text-align: center;">Escoge tu perfil</h3>
+        <h3 class="text-center">Escoge tu perfil</h3>
 		{% if userTypes %}
 			<div class="row">
 				{% for type in userTypes %}

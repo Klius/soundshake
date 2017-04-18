@@ -1,12 +1,13 @@
-from flask.ext.wtf import Form
-from wtforms import StringField, BooleanField
-from wtforms.validators import DataRequired
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired
 
 
-class SearchForm(Form):
-    queryString = StringField('queryString', validators=[DataRequired()])
+class SearchForm(FlaskForm):
+    queryString = StringField('queryString', validators=[InputRequired()])
 
 
-class LoginForm(Form):
-    openid = StringField('openid', validators=[DataRequired()])
-    remember_me = BooleanField('remember_me', default=False)
+class LoginForm(FlaskForm):
+    nickname = StringField('Nombre de usuario', validators=[InputRequired()])
+    password = PasswordField('Contraseña', validators=[InputRequired()])
+    submit = SubmitField('Validar')
