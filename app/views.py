@@ -18,12 +18,14 @@ navbarItems = [
 
 logged = False
 
+
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html',
-    	                   current='index',
-    	                   navbarItems=navbarItems)
+                           current='index',
+                           navbarItems=navbarItems)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -32,30 +34,32 @@ def login():
                            current='login',
                            navbarItems=navbarItems)
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    userTypes = [  # fake array of posts
+    user_types = [  # fake array of posts
         {
             'name': 'Carpintero',
             'description': 'Beautiful day in Portland!',
             'id_tipo_usuario': 1
         },
         {
-            'name': 'Fontanero', 
+            'name': 'Fontanero',
             'description': 'To be or not to be!',
             'id_tipo_usuario': 2
         },
         {
-            'name': 'Malabarista', 
+            'name': 'Malabarista',
             'description': 'Lore ipsum',
             'id_tipo_usuario': 3
         }
     ]
     return render_template('signup.html',
-    	                   title='registro',
-    	                   current='signup',
-    	                   navbarItems=navbarItems,
-    	                   userTypes=userTypes)
+                           title='registro',
+                           current='signup',
+                           navbarItems=navbarItems,
+                           userTypes=user_types)
+
 
 @app.route('/bulletin_board')
 def bulletin_board():
@@ -72,18 +76,21 @@ def bulletin_board():
         }
     ]
     return render_template('bulletin_board.html',
-    	                   title='tablon',
-    	                   current='bulletin_board',
-    	                   navbarItems=navbarItems,
+                           title='tablon',
+                           current='bulletin_board',
+                           navbarItems=navbarItems,
                            posts=posts)
 
 
 @app.errorhandler(404)
 def not_found(error):
-	return render_template('routing/404.html',
-		                   title='error'), 404
+    return render_template('routing/404.html',
+                           title='error',
+                           error=error), 404
+
 
 @app.errorhandler(401)
 def not_found(error):
-	return render_template('routing/401.html',
-		                   title='error'), 401
+    return render_template('routing/401.html',
+                           title='error',
+                           error=error), 401
