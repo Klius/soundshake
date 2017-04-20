@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired
+from wtforms.validators import InputRequired, Length
 
 
 class SearchForm(FlaskForm):
@@ -8,6 +8,6 @@ class SearchForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    nickname = StringField('Nombre de usuario', validators=[InputRequired()])
-    password = PasswordField('Contraseña', validators=[InputRequired()])
+    nickname = StringField('Nombre de usuario', validators=[InputRequired(), Length(min=4, max=25)])
+    password = PasswordField('Contraseña', validators=[InputRequired(), Length(min=7, max=200)])
     submit = SubmitField('Validar')
