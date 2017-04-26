@@ -1,7 +1,6 @@
 from flask import render_template, request, abort
 from app import app
 from app.forms import LoginForm
-from app.models import User
 
 navbarItemsUnlogged = [
     {
